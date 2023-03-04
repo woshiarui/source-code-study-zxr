@@ -1,6 +1,33 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: ZhengXiaoRui
+ * @email: zheng20010712@163.com
+ * @Date: 2023-03-03 21:41:16
+ * @LastEditors: ZhengXiaoRui
+ * @LastEditTime: 2023-03-03 22:50:48
+ */
 import ReactReconciler from "react-reconciler";
 
-const hostConfig = {};
+const hostConfig = {
+  supportsMutation: true,
+  getRootHostContext() {},
+  getChildHostContext() {},
+  prepareForCommit() {},
+  resetAfterCommit() {},
+  shouldSetTextContent() {},
+  createInstance() {},
+  createTextInstance() {},
+  appendInitialChild() {},
+  finalizeInitialChildren() {},
+  clearContainer() {},
+  appendChild() {},
+  appendChildToContainer() {},
+  prepareUpdate() {},
+  commitUpdate() {},
+  commitTextUpdate() {},
+  removeChild() {},
+};
 
 const ReactReconcilerInst = ReactReconciler(hostConfig);
 
