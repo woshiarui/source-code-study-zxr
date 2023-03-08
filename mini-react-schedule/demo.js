@@ -5,7 +5,7 @@
  * @email: zheng20010712@163.com
  * @Date: 2023-03-08 16:06:11
  * @LastEditors: ZhengXiaoRui
- * @LastEditTime: 2023-03-08 16:41:46
+ * @LastEditTime: 2023-03-08 17:05:20
  */
 const insertItem = (content) => {
   const ele = document.createElement("span");
@@ -54,12 +54,29 @@ function cancelCallback(task) {
   task.callback = null;
 }
 
-function perform(work) {
-  while (work.count) {
+function perform(work, didTimeout) {
+  const needSync = work.priority === ImmediatePriority || didTimeout;
+  while ((needSync || !shouldYield()) && work.count) {
     work.count--;
     insertItem();
   }
+  prevPriority = work.priority;
+
+  if (!work.count) {
+    //从workList中删除
+    const workIndex = workList.indexOf(work);
+    workList.splice(workIndex, 1);
+    prevPriority = IdlePriority;
+  }
+
+  const preCallback = curCallback;
+  //调度完之后，如果callback发生变化，代表这是新的work
   schedule();
+  const newCallback = curCallback;
+
+  if (newCallback && preCallback === newCallback) {
+    return perform.bind(null, work);
+  }
 }
 
 button.onClick = function () {
