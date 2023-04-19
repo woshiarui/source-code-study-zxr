@@ -29,6 +29,14 @@ Welcome everyone to raise issues and discuss together
 
 作用：更清晰的理解细粒度更新实现原理——发布订阅；理解细粒度更新的优点——无需显示声明依赖和 React Hooks 可以不受“不能在条件语句中声明 Hooks 的限制”
 
+3.mini-react-syntheticEvent
+
+这是一个 React 事件系统的 mini 实现
+
+主要内容：在 mini-react-syntheticEvent 的 index.js 中
+
+作用：更加清晰的了解合成事件，以及其对应的事件传播机制~
+
 #### English
 
 ##### 1.mini-react-render
